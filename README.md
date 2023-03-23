@@ -18,12 +18,17 @@ retrieve, edit, and delete information regarding furniture, customers, and order
 provide the following:
 
 1- Zip file for your Java project.
+
 a. If you are using NetBeans: make sure that your project is open in NetBeans (the
 only open project), click on File -> Export Project -> To ZIP … to generate one zip
 file.
+
 b. If you are using a different IDE: put all java classes in one single zip file.
+
 2- Documentation pdf file: this file has the following sections:
+
 a. Introduction: briefly describe the purpose of the project.
+
 b. Architecture: provide a UML class diagram showing a big picture of your project.
 Use the Lucidchart, visit (https://www.lucidchart.com/pages/) then click on Sign
 up free and select the free version and sign up. Next, you can start the online
@@ -31,17 +36,20 @@ editor and create UML class diagram for your project. You can save and come
 back later to work on it. Once you finished all the work, click on File -> Export ->
 PDF and download the file to submit.
 
-2
 c. MySQL Database: describes the structure of your database like tables and fields
 used along with connection information like username and password.
+
 d. GUI: describe how to use the GUI. There are two ways to do that:
+
 i. Describe the purpose of every GUI component, like this button do this and
 this window do that and so on.
+
 ii. Provide scenarios or use-cases. For example, adding a new item scenario
 and you start by asking the user to click on add new item button then a
 window will open, and you have to enter information on this field and that
 field and so on till the user finish this task. Then you explain another
 scenario like searching for an item and so on.
+
 e. Testing: describe how you used Unit testing to check for errors in your project.
 For example, you can state that you design the insert unit testing for existing item
 to see if the function for adding new books that exists in the library return back
