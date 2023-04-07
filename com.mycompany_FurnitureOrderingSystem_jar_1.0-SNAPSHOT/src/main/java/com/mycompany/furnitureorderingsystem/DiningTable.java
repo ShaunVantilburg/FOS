@@ -10,9 +10,14 @@ package com.mycompany.furnitureorderingsystem;
  * @author Shaun
  */
 public class DiningTable extends Furniture {
-private static final String FURNITURE = "dining table";
+    private static final String FURNITURE = "dining table";
     public DiningTable() { super(FURNITURE); }
     public DiningTable(String materialType) { super(FURNITURE, materialType); }
     public DiningTable(String materialType, String color) { super(FURNITURE, materialType, color); }
     public DiningTable(String materialType, String color, double cost) { super(FURNITURE, materialType, color, cost); }
+    
+    @Override
+    public String toString() {
+        return super.toString() + "\n It has the following chairs:\n";
+    }
 }

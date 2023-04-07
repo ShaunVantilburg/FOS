@@ -14,33 +14,34 @@ public abstract class Furniture {
     //Constructors
     public Furniture(String furnitureType) {
         this.furnitureType = furnitureType;
-        materialQuery();
-        colorQuery();
-        costQuery();
+        setMaterialType();
+        setColor();
+        setCost();
     }
     public Furniture(String furnitureType, String materialType) {
         this.furnitureType = furnitureType;
-        this.materialType = materialType;
-        colorQuery();
-        costQuery();
+        setMaterialType(materialType);
+        setColor();
+        setCost();
     }
     public Furniture(String furnitureType, String materialType, String color) {
         this.furnitureType = furnitureType;
-        this.materialType = materialType;
-        this.color = color;
-        costQuery();
+        setMaterialType(materialType);
+        setColor(color);
+        setCost();
     }
     public Furniture(String furnitureType, String materialType, String color, double cost) {
         this.furnitureType = furnitureType;
-        this.materialType = materialType;
-        this.color = color;
-        initCost(cost);
+        setMaterialType(materialType);
+        setColor(color);
+        setCost(cost);
     }
     
     //Member variables
-    public String materialType;
-    public String color;
-    public String furnitureType;
+    public Dimensions d = new Dimensions();
+    private String materialType;
+    private String color;
+    private final String furnitureType;
     private double cost;
     
     //Member methods
@@ -49,33 +50,32 @@ public abstract class Furniture {
     }
     
     //Private initialization, safely usable in constructors
-    private void initCost(double cost) {
-        if (cost > 0) {
-            this.cost = cost;
-            System.out.println("Cost successfully set to $" + cost);
-        }
-        else System.out.println("Invalid cost.  Change not saved.");
+    protected final void setCost(double cost) {
+        if (cost >= 0) this.cost = cost;
+        else System.out.println("Invalid cost.  Change not saved."); 
     }
     
-    //Protected setCost, usable from subclasses
-    protected void setCost(double cost) { initCost(cost); }
-    
-    private void materialQuery() {
+    private void setMaterialType() {
         System.out.println("What's the material type of your " + furnitureType + "?");
         System.out.print("Material type: ");
         materialType = input.nextLine();
     }
-    private void colorQuery() {
+    protected final void setMaterialType(String m) {
+        materialType = m;
+    }
+    private void setColor() {
         System.out.println("What color is your " + furnitureType + "?");
         System.out.print("Color: ");
         color = input.nextLine();
     }
-    private void costQuery() {
+    protected final void setColor(String c) {
+        color = c;
+    }
+    private void setCost() {
         System.out.println("How much does your " + furnitureType + " cost?");
         System.out.print("Cost: $");
         setCost(input.nextDouble());
     }
-    
     @Override
     public String toString() {
     return "This "+color+" "+furnitureType+" is made of "+materialType+" and costs $"+cost+".";

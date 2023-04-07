@@ -10,7 +10,7 @@ package com.mycompany.furnitureorderingsystem;
  * @author Shaun
  */
 public class Sofa extends Furniture {
-private static final String FURNITURE = "sofa";
+    private static final String FURNITURE = "sofa";
     public Sofa() { super(FURNITURE); }
     public Sofa(String materialType) { super(FURNITURE, materialType); }
     public Sofa(String materialType, String color) { super(FURNITURE, materialType, color); }

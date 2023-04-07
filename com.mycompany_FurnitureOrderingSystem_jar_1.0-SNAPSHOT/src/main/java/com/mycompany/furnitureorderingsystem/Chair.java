@@ -10,7 +10,7 @@ package com.mycompany.furnitureorderingsystem;
  * @author Shaun
  */
 public class Chair extends Furniture {
-private static final String FURNITURE = "chair";
+    private static final String FURNITURE = "chair";
     public Chair() { super(FURNITURE); }
     public Chair(String materialType) { super(FURNITURE, materialType); }
     public Chair(String materialType, String color) { super(FURNITURE, materialType, color); }
