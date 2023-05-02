@@ -16,6 +16,7 @@ public class DiningTable extends Furniture {
     public DiningTable(String materialType, String color) { super(FURNITURE, materialType, color); }
     public DiningTable(String materialType, String color, double cost) { super(FURNITURE, materialType, color, cost); }
     
+    public Chair[] listOfChairs;
     @Override
     public String toString() {
         return super.toString() + "\n It has the following chairs:\n";
