@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author Shaun
  */
 public abstract class Furniture {
-    Scanner input = new Scanner(System.in);
+//    Scanner input = new Scanner(System.in);
     //Constructors
     public Furniture(String furnitureType) {
         this.furnitureType = furnitureType;
@@ -51,30 +51,31 @@ public abstract class Furniture {
     
     //Private initialization, safely usable in constructors
     protected final void setCost(double cost) {
-        if (cost >= 0) this.cost = cost;
-        else System.out.println("Invalid cost.  Change not saved."); 
+//        if (cost >= 0) this.cost = cost;
+//
+//        else System.out.println("Invalid cost.  Change not saved.");
     }
     
     private void setMaterialType() {
-        System.out.println("What's the material type of your " + furnitureType + "?");
-        System.out.print("Material type: ");
-        materialType = input.nextLine();
+//        System.out.println("What's the material type of your " + furnitureType + "?");
+//        System.out.print("Material type: ");
+//        materialType = input.nextLine();
     }
     protected final void setMaterialType(String m) {
         materialType = m;
     }
     private void setColor() {
-        System.out.println("What color is your " + furnitureType + "?");
-        System.out.print("Color: ");
-        color = input.nextLine();
+//        System.out.println("What color is your " + furnitureType + "?");
+//        System.out.print("Color: ");
+//        color = input.nextLine();
     }
     protected final void setColor(String c) {
         color = c;
     }
     private void setCost() {
-        System.out.println("How much does your " + furnitureType + " cost?");
-        System.out.print("Cost: $");
-        setCost(input.nextDouble());
+//        System.out.println("How much does your " + furnitureType + " cost?");
+//        System.out.print("Cost: $");
+//        setCost(input.nextDouble());
     }
     @Override
     public String toString() {

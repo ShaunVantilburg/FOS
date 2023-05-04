@@ -15,14 +15,14 @@ public class Dimensions {
     double height = 0;
     
     public Dimensions() {
-        setLength();
-        setWidth();
-        setHeight();
+//        setLength();
+//        setWidth();
+//        setHeight();
     }
     public Dimensions(double l, double w, double h) {
-        setLength(l);
-        setWidth(w);
-        setHeight(h);
+//        setLength(l);
+//        setWidth(w);
+//        setHeight(h);
     }
     public double getLength() {
         return length;

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="35d7c77d-107f-4d9d-9934-128feb075255" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/GUIMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/MainFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderListFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Dimensions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Furniture.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Furniture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PFSaBBh0VG49vlG0zkJpxiPv1k" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mycompany.furnitureorderingsystem.gui" />
+      <recent name="com.mycompany.furnitureorderingsystem" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="FOS" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.mycompany.furnitureorderingsystem.FurnitureOrderingSystem" />
+      <module name="FOS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35d7c77d-107f-4d9d-9934-128feb075255" name="Changes" comment="" />
+      <created>1683051399882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683051399882</updated>
+    </task>
+    <servers />
+  </component>
+</project>

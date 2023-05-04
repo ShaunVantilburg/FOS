@@ -4,6 +4,8 @@
 
 package com.mycompany.furnitureorderingsystem;
 
+import com.mycompany.furnitureorderingsystem.gui.GUIMain;
+
 /**
  *
  * @author Shaun
@@ -11,7 +13,6 @@ package com.mycompany.furnitureorderingsystem;
 public class FurnitureOrderingSystem {
 
     public static void main(String[] args) {
-        var cabby = new DiningTable("oak", "red");
-        System.out.print(cabby);
+        GUIMain.open();
     }
 }
