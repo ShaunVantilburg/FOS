@@ -11,5 +11,5 @@ package com.mycompany.furnitureorderingsystem;
  */
 public class Sofa extends Furniture {
     private static final String FURNITURE = "sofa";
-    public Sofa(String materialType, String color, double cost) { super(FURNITURE, materialType, color, cost); }
+    public Sofa(String materialType, String color, double cost, double l, double w, double h) { super(FURNITURE, materialType, color, cost, l, w, h); }
 }

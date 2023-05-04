@@ -10,7 +10,8 @@ package com.mycompany.furnitureorderingsystem;
  */
 public abstract class Furniture {
 
-    public Furniture(String furnitureType, String materialType, String color, double cost) {
+    public Furniture(String furnitureType, String materialType, String color, double cost, double l, double w, double h) {
+        dimensions = new Dimensions(l, w, h);
         this.furnitureType = furnitureType;
         setMaterialType(materialType);
         setColor(color);
@@ -18,7 +19,7 @@ public abstract class Furniture {
     }
     
     //Member variables
-    public Dimensions d = new Dimensions();
+    public Dimensions dimensions;
     private String materialType;
     private String color;
     private final String furnitureType;
@@ -36,8 +37,6 @@ public abstract class Furniture {
     }
     
     private void setMaterialType(String mat) {
-        System.out.println("What's the material type of your " + furnitureType + "?");
-        System.out.print("Material type: ");
         materialType = mat;
     }
     private void setColor(String col) {
@@ -46,6 +45,13 @@ public abstract class Furniture {
     
     @Override
     public String toString() {
-    return "This "+color+" "+furnitureType+" is made of "+materialType+" and costs $"+cost+".";
+        String typess = "Furniture Type: " + furnitureType + ", ";
+        String matss = "Material Type: " + materialType + ", ";
+        String colorss = "Color: " + color + ", ";
+        String costss = "Cost: $" + cost + ", ";
+        String lengthss = "Length: " + dimensions.length + " in, ";
+        String widthss = "Width: " + dimensions.width + " in, ";
+        String heightss = "Height: " + dimensions.height + " in";
+        return typess + matss + colorss + costss + lengthss + widthss + heightss;
     }
 }

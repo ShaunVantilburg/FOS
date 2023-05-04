@@ -11,6 +11,7 @@ package com.mycompany.furnitureorderingsystem;
 public class FurnitureOrderingSystem {
 
     public static void main(String[] args) {
-            
+        var cabinet = new StorageCabinet("Oak", "Red", 49.99, 20, 24, 38);
+        System.out.println(cabinet);
     }
 }
