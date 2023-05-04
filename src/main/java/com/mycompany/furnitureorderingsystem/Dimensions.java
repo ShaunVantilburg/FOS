@@ -34,11 +34,11 @@ public class Dimensions {
         else System.out.println("Invalid length. Failed to change.");
     }
     private void setWidth(double w) {
-        if (w > 0) length = w;
+        if (w > 0) width = w;
         else System.out.println("Invalid width. Failed to change.");
     }
     private void setHeight(double h) {
-        if (h > 0) length = h;
+        if (h > 0) height = h;
         else System.out.println("Invalid height. Failed to change.");
     }
 }
