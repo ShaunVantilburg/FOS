@@ -3,14 +3,16 @@ package com.mycompany.furnitureorderingsystem.gui;
 import com.mycompany.furnitureorderingsystem.*;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.awt.event.*;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 
 public class CreateOrderFrame extends JFrame {
 
@@ -22,6 +24,9 @@ public class CreateOrderFrame extends JFrame {
     protected final JComboBox<Customer> customerCB;
     public final JPanel itemsPanel;
     protected ArrayList<Furniture> items = new ArrayList<>();
+    public final JLabel dateLabel;
+    public final JTextField dateTxt;
+
     public CreateOrderFrame(JFrame parent){
         super("Create Order System");
         this.parent = parent;
@@ -45,7 +50,13 @@ public class CreateOrderFrame extends JFrame {
         customerCB.setAlignmentX(Component.CENTER_ALIGNMENT);
         customerPanel.add(customerCB);
 
-        // TODO: add date picker
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(1,2));
+        dateLabel = new JLabel("Enter Date: ");
+        p.add(dateLabel);
+        dateTxt = new JTextField();
+        p.add(dateTxt);
+        add(p);
 
         itemsPanel = new JPanel();
 
@@ -77,7 +88,6 @@ public class CreateOrderFrame extends JFrame {
         backBtn = new JButton("Back");
         add(backBtn);
         backBtn.addMouseListener(new MouseHandler("Back"));
-
     }
 
     private class MouseHandler implements MouseListener {
