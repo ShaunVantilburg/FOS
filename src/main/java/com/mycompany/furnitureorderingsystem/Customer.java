@@ -10,5 +10,15 @@ package com.mycompany.furnitureorderingsystem;
  * @author Shaun
  */
 public class Customer {
-    
+
+    // For GUI testing
+    public final String name;
+    public Customer(String name){
+        this.name = name;
+    }
+    // For GUI testing
+    @Override
+    public String toString() {
+        return name;
+    }
 }
