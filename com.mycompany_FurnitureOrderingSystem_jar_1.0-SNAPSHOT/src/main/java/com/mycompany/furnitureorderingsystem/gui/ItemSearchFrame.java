@@ -57,7 +57,7 @@ public class ItemSearchFrame extends JFrame {
         JScrollPane listScroller = new JScrollPane(itemList);
         add(listScroller);
     }
-    protected static Furniture[] items = new Furniture[]{new Bed("red"),new Chair(),new Sofa()};
+    protected static Furniture[] items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
     private Furniture[] findItem(String search){
         // TODO: get orders from database
         ArrayList<Furniture> found = new ArrayList<>();

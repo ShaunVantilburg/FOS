@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eff8992-5323-4aea-85d3-f5e17c470e0a" name="Changes" comment="" />
+    <list default="true" id="35d7c77d-107f-4d9d-9934-128feb075255" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Bed.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Bed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Chair.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Chair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Furniture.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Furniture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Sofa.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Sofa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Bed.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Bed.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Chair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Chair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Customer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Date.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Dimensions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Dimensions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/DiningTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/DiningTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Furniture.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Furniture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Sofa.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/Sofa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/StorageCabinet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/StorageCabinet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame$ItemListHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/GUIMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/GUIMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/MainFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/MainFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderListFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderListFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderListFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderListFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame$MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame$MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/FOS/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Bed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Chair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Dimensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Dimensions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/DiningTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/DiningTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Furniture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/FurnitureOrderingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/Sofa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/StorageCabinet.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/StorageCabinet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerAddFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CustomerSearchFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/GUIMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/GUIMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemAddFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/ItemSearchFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderListFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderListFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/OrderSearchFrame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +77,32 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/turtl/Documents/GitHub/FOS/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\turtl\Documents\GitHub\FOS\com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT\src\main\java\com\mycompany\furnitureorderingsystem" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\turtl\Documents\GitHub\FOS\com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT\src\main\java\com\mycompany\furnitureorderingsystem" />
+      <recent name="C:\Users\turtl\Documents\GitHub\FOS\com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="FOS" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.mycompany.furnitureorderingsystem.FurnitureOrderingSystem" />
+      <module name="FOS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -30,5 +113,16 @@
       <updated>1683048664135</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/com.mycompany_FurnitureOrderingSystem_jar_1.0-SNAPSHOT/src/main/java/com/mycompany/furnitureorderingsystem/gui/CreateOrderFrame.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

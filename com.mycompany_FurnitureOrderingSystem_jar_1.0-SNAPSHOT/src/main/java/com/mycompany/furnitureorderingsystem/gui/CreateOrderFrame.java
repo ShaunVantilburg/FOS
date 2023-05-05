@@ -7,6 +7,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormatSymbols;
@@ -22,15 +24,15 @@ public class CreateOrderFrame extends JFrame {
     protected static Customer[] customers = {new Customer("Shaun"), new Customer("Josh"), new Customer("Mario")};
     protected Customer[] customerArray = customers;
     protected final JComboBox<Customer> customerCB;
-    public final JPanel itemsPanel;
-    protected ArrayList<Furniture> items = new ArrayList<>();
+    public final Furniture[] items;
     public final JLabel dateLabel;
     public final JTextField dateTxt;
+    public final JList<Furniture> itemList;
 
     public CreateOrderFrame(JFrame parent){
         super("Create Order System");
         this.parent = parent;
-        setLayout(new GridLayout(7,1));
+        setLayout(new GridLayout(5,1));
 
         JPanel customerPanel = new JPanel();
         customerPanel.setLayout(new BoxLayout(customerPanel, BoxLayout.Y_AXIS));
@@ -58,36 +60,33 @@ public class CreateOrderFrame extends JFrame {
         p.add(dateTxt);
         add(p);
 
-        itemsPanel = new JPanel();
-
-        JPanel itemSelectPanel = new JPanel();
-        itemSelectPanel.setLayout(new BoxLayout(itemSelectPanel, BoxLayout.Y_AXIS));
-
-        itemsPanel.add(itemSelectPanel);
-        add(itemsPanel);
-
         JLabel itemLbl = new JLabel("Select an item");
         itemLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        customerPanel.add(itemLbl);
+        add(itemLbl);
 
-        // TODO: get orders from database
+        // TODO: get items from database
 
-        Furniture[] items = new Furniture[]{new Bed("red"),new Chair(),new Sofa()};
+        items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
+        itemList = new JList<>(items);
+        itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        itemList.setLayoutOrientation(JList.VERTICAL);
+        itemList.setVisibleRowCount(-1);
+        itemList.addListSelectionListener(new ItemSelectionListener());
 
-        final JComboBox<Furniture> itemCB = new JComboBox<>(items);
+        JScrollPane itemScroller = new JScrollPane(itemList);
+        add(itemScroller);
 
-        itemCB.setMaximumSize(itemCB.getPreferredSize());
-        itemCB.setAlignmentX(Component.CENTER_ALIGNMENT);
-        itemCB.addActionListener(new ItemListHandler(itemCB));
-        itemSelectPanel.add(itemCB);
+        JPanel btnPanel = new JPanel();
+        btnPanel.setLayout(new GridLayout(1,2));
 
         enterBtn = new JButton("Enter");
-        add(enterBtn);
+        btnPanel.add(enterBtn);
         enterBtn.addMouseListener(new MouseHandler("Enter"));
         backBtn = new JButton("Back");
-        add(backBtn);
+        btnPanel.add(backBtn);
         backBtn.addMouseListener(new MouseHandler("Back"));
+        add(btnPanel);
     }
 
     private class MouseHandler implements MouseListener {
@@ -114,21 +113,48 @@ public class CreateOrderFrame extends JFrame {
         @Override
         public void mouseExited(MouseEvent e) {}
     }
+    private int[] storedIndices = new int[0];
+    private boolean adjusting = false;
+    private class ItemSelectionListener implements ListSelectionListener {
 
-    private class ItemListHandler implements ActionListener {
-        private final JComboBox<Furniture> itemCB;
-        ItemListHandler(JComboBox<Furniture> itemCB){
-            this.itemCB = itemCB;
-        }
         @Override
-        public void actionPerformed(ActionEvent e) {
-            var item = itemCB.getSelectedItem();
-            itemCB.removeItem(item);
-            items.add((Furniture) item);
-            JLabel itemLabel = new JLabel(item.toString());
-            itemsPanel.add(itemLabel);
-            itemsPanel.setLayout(new GridLayout(itemsPanel.getComponentCount(),1));
-            itemsPanel.doLayout();
+        public void valueChanged(ListSelectionEvent e) {
+            if (adjusting)
+                return;
+            if (storedIndices==itemList.getSelectedIndices())
+                return;
+            int firstIndex = e.getFirstIndex();
+            int lastIndex = e.getLastIndex();
+            boolean isAdjusting = e.getValueIsAdjusting();
+            if (isAdjusting)
+                return;
+            adjusting = true;
+            int[] oldSelection = storedIndices;
+            int[] newSelection = itemList.getSelectedIndices();
+            ArrayList<Integer> newIndices = new ArrayList<>();
+            for (int i = 0; i < items.length; i++){
+                boolean inOld = containsIndex(oldSelection,i);
+                boolean inNew = containsIndex(newSelection,i);
+                if (!inOld & inNew){
+                    newIndices.add(i);
+                } else if (inOld & !inNew) {
+                    newIndices.add(i);
+                }
+            }
+            newSelection = new int[newIndices.size()];
+            for (int i=0;i< newIndices.size();i++)
+                newSelection[i] = newIndices.get(i);
+            storedIndices = newSelection;
+            itemList.setSelectedIndices(storedIndices);
+            adjusting = false;
+        }
+
+        private boolean containsIndex(int[] A, int index){
+            for (int a:A){
+                if (a==index)
+                    return true;
+            }
+            return false;
         }
     }
 }
