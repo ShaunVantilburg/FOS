@@ -1,0 +1,10 @@
+com\mycompany\furnitureorderingsystem\Chair.class
+com\mycompany\furnitureorderingsystem\Customer.class
+com\mycompany\furnitureorderingsystem\Bed.class
+com\mycompany\furnitureorderingsystem\DiningTable.class
+com\mycompany\furnitureorderingsystem\StorageCabinet.class
+com\mycompany\furnitureorderingsystem\Sofa.class
+com\mycompany\furnitureorderingsystem\Furniture.class
+com\mycompany\furnitureorderingsystem\FurnitureOrderingSystem.class
+com\mycompany\furnitureorderingsystem\Order.class
+com\mycompany\furnitureorderingsystem\Dimensions.class

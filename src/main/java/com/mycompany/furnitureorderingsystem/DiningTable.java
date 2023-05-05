@@ -11,14 +11,12 @@ package com.mycompany.furnitureorderingsystem;
  */
 public class DiningTable extends Furniture {
     private static final String FURNITURE = "dining table";
-    public DiningTable() { super(FURNITURE); }
-    public DiningTable(String materialType) { super(FURNITURE, materialType); }
-    public DiningTable(String materialType, String color) { super(FURNITURE, materialType, color); }
-    public DiningTable(String materialType, String color, double cost) { super(FURNITURE, materialType, color, cost); }
+    public DiningTable(String materialType, String color, double cost, double l, double w, double h) { super(FURNITURE, materialType, color, cost, l, w, h); }
     
     public Chair[] listOfChairs;
+    
     @Override
     public String toString() {
-        return super.toString() + "\n It has the following chairs:\n";
+        return super.toString();
     }
 }
