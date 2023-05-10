@@ -56,7 +56,7 @@ public class CustomerSearchFrame extends JFrame {
 
 
     }
-    protected static Customer[] customers = {new Customer("Shaun"), new Customer("Josh"), new Customer("Mario")};
+    protected static Customer[] customers = {};
     private Customer[] findCustomer(String search){
         // TODO: get orders from database
         ArrayList<Customer> found = new ArrayList<>();

@@ -21,7 +21,7 @@ public class CreateOrderFrame extends JFrame {
     public final JButton enterBtn;
     public final JButton backBtn;
     public final JFrame parent;
-    protected static Customer[] customers = {new Customer("Shaun"), new Customer("Josh"), new Customer("Mario")};
+    protected static Customer[] customers = {};
     protected Customer[] customerArray = customers;
     protected final JComboBox<Customer> customerCB;
     public final Furniture[] items;
@@ -60,12 +60,12 @@ public class CreateOrderFrame extends JFrame {
         p.add(dateTxt);
         add(p);
 
-        JLabel itemLbl = new JLabel("Select an item");
+        JLabel itemLbl = new JLabel("Select items:");
         itemLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(itemLbl);
 
-        // TODO: get items from database
+        // TODO: get chairs from database
 
         items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
         itemList = new JList<>(items);

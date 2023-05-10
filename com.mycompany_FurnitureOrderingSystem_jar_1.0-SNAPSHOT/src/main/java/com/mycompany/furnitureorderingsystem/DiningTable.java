@@ -11,7 +11,10 @@ package com.mycompany.furnitureorderingsystem;
  */
 public class DiningTable extends Furniture {
     private static final String FURNITURE = "dining table";
-    public DiningTable(String materialType, String color, double cost, double l, double w, double h) { super(FURNITURE, materialType, color, cost, l, w, h); }
+    public DiningTable(String materialType, String color, double cost, double l, double w, double h, Chair[] chairs) {
+        super(FURNITURE, materialType, color, cost, l, w, h);
+        this.listOfChairs = chairs;
+    }
     
     public Chair[] listOfChairs;
     
