@@ -8,19 +8,10 @@ package com.mycompany.furnitureorderingsystem;
 import java.util.Date;
 
 /**
- *
  * @author Shaun
  */
-public class Customer {
+public record Customer(int id, String name, Date dob, String address) {
 
-    public final String name;
-    private final Date dob;
-    private final String address;
-    public Customer(String name, Date dob, String address){
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-    }
     @Override
     public String toString() {
         return "Name: " + name +

@@ -1,6 +1,8 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.*;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -11,12 +13,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class CreateOrderFrame extends JFrame {
+public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JButton enterBtn;
     public final JButton backBtn;
@@ -65,9 +68,12 @@ public class CreateOrderFrame extends JFrame {
 
         add(itemLbl);
 
-        // TODO: get chairs from database
-
-        items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
+        try {
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
         itemList = new JList<>(items);
         itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         itemList.setLayoutOrientation(JList.VERTICAL);
@@ -87,6 +93,11 @@ public class CreateOrderFrame extends JFrame {
         btnPanel.add(backBtn);
         backBtn.addMouseListener(new MouseHandler("Back"));
         add(btnPanel);
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     private class MouseHandler implements MouseListener {

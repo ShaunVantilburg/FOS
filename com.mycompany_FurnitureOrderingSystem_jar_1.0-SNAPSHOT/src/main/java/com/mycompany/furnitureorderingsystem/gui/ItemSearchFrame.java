@@ -4,15 +4,18 @@ import com.mycompany.furnitureorderingsystem.Bed;
 import com.mycompany.furnitureorderingsystem.Chair;
 import com.mycompany.furnitureorderingsystem.Furniture;
 import com.mycompany.furnitureorderingsystem.Sofa;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ItemSearchFrame extends JFrame {
+public class ItemSearchFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JLabel nameLabel;
     public final JTextField nameTxt;
@@ -59,13 +62,16 @@ public class ItemSearchFrame extends JFrame {
     }
     protected static Furniture[] items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
     private Furniture[] findItem(String search){
-        // TODO: get orders from database
-        ArrayList<Furniture> found = new ArrayList<>();
-        for (Furniture item: items){
-            if (item.toString().contains(search))
-                found.add(item);
+        try {
+            return SQLConnection.instance.readItems(search).toArray(new Furniture[0]);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
-        return found.toArray(new Furniture[0]);
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     private class MouseHandler implements MouseListener {

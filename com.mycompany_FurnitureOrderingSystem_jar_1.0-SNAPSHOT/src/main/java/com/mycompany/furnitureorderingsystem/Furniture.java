@@ -29,6 +29,18 @@ public abstract class Furniture {
     public double getCost() {
         return this.cost;
     }
+
+    public String getFurnitureType(){
+        return furnitureType;
+    }
+
+    public String getMaterialType(){
+        return materialType;
+    }
+
+    public String getColor(){
+        return color;
+    }
     
     //Private initialization, safely usable in constructors
     protected final void setCost(double cost) {

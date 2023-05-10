@@ -4,21 +4,22 @@
 
 package com.mycompany.furnitureorderingsystem;
 
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 import com.mycompany.furnitureorderingsystem.gui.GUIMain;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 /**
  *
  * @author Shaun
  */
 public class FurnitureOrderingSystem {
-    // Fake databases storage for testing
-    public static final ArrayList<Customer> customerDB = new ArrayList<>();
-    public static final ArrayList<Furniture> itemDB = new ArrayList<>();
-    public static final ArrayList<Order> orderDB = new ArrayList<>();
-
     public static void main(String[] args) {
+        try {
+            new SQLConnection("jdbc:mysql://localhost/fos_database", "CS3700", "CS3700");
+        } catch (SQLException sqlException){
+            throw new RuntimeException("Connection failed: "+sqlException.getMessage());
+        }
         GUIMain.open();
     }
 }

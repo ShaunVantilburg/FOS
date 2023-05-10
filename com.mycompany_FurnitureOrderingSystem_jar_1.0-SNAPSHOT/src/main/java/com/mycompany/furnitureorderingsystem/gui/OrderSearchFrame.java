@@ -1,6 +1,7 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.*;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class OrderSearchFrame extends JFrame {
+public class OrderSearchFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JLabel nameLabel;
     public final JTextField nameTxt;
@@ -63,6 +64,11 @@ public class OrderSearchFrame extends JFrame {
                 found.add(order);
         }
         return found.toArray(new Order[0]);
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     private class MouseHandler implements MouseListener {

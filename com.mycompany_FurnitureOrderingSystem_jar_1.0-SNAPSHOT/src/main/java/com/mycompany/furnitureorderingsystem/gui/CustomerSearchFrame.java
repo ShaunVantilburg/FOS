@@ -1,15 +1,18 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.Customer;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CustomerSearchFrame extends JFrame {
+public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JLabel nameLabel;
     public final JTextField nameTxt;
@@ -45,7 +48,7 @@ public class CustomerSearchFrame extends JFrame {
         panel.setLayout(new GridLayout(2,2));
         add(panel);
 
-        found = customers;
+        reload();
         customerList = new JList<>(found);
         customerList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         customerList.setLayoutOrientation(JList.VERTICAL);
@@ -56,15 +59,21 @@ public class CustomerSearchFrame extends JFrame {
 
 
     }
-    protected static Customer[] customers = {};
     private Customer[] findCustomer(String search){
-        // TODO: get orders from database
-        ArrayList<Customer> found = new ArrayList<>();
-        for (Customer customer: customers){
-            if (customer.name.contains(search))
-                found.add(customer);
+        try {
+            var found = SQLConnection.instance.readCustomers(search);
+            return found.toArray(new Customer[0]);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
-        return found.toArray(new Customer[0]);
+    }
+
+    @Override
+    public void reload() {
+        found = findCustomer("");
+        if (this.customerList!=null)
+            customerList.setListData(found);
     }
 
     private class MouseHandler implements MouseListener {

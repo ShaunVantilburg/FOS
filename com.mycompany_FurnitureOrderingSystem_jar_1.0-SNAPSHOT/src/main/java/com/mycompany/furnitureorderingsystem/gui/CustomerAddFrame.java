@@ -2,18 +2,21 @@ package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.Customer;
 import com.mycompany.furnitureorderingsystem.FurnitureOrderingSystem;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class CustomerAddFrame extends JFrame {
+public class CustomerAddFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JLabel nameLabel;
     public final JTextField nameTxt;
@@ -65,6 +68,11 @@ public class CustomerAddFrame extends JFrame {
 
     }
 
+    @Override
+    public void reload() {
+        // Unused
+    }
+
     private class MouseHandler implements MouseListener {
         private final String selector;
         MouseHandler(String selector){
@@ -75,15 +83,16 @@ public class CustomerAddFrame extends JFrame {
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-                DateFormat format = new SimpleDateFormat();
+                DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                 Customer customer;
                 try {
-                    customer = new Customer(nameTxt.getText(), format.parse(dobTxt.getText()),addressTxt.getText());
-                } catch (ParseException ex) {
+                    customer = new Customer(-1,nameTxt.getText(), format.parse(dobTxt.getText()),addressTxt.getText());
+                    SQLConnection.instance.writeCustomer(customer);
+                } catch (ParseException | SQLException ex) {
+                    ex.printStackTrace();
                     throw new RuntimeException(ex);
                 }
-                // TODO: Save Customer to Database
-                FurnitureOrderingSystem.customerDB.add(customer);
+                nameTxt.setText(""); dobTxt.setText(""); addressTxt.setText("");
             }
         }
         @Override

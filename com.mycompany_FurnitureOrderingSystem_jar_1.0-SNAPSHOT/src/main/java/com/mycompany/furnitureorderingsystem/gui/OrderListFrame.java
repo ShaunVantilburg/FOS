@@ -1,6 +1,7 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.Order;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class OrderListFrame extends JFrame {
+public class OrderListFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JFrame parent;
     public final JButton backBtn;
@@ -34,6 +35,11 @@ public class OrderListFrame extends JFrame {
     }
     // TODO: get orders from database
     protected static Order[] orders = {new Order(), new Order()};
+
+    @Override
+    public void reload() {
+
+    }
 
     private class MouseHandler implements MouseListener {
         @Override

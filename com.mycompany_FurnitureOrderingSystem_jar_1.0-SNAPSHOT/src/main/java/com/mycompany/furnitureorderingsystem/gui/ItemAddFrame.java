@@ -1,6 +1,8 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.*;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -10,10 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class ItemAddFrame extends JFrame {
+public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JPanel itemPanel;
     public final JLabel matLabel;
@@ -24,7 +28,7 @@ public class ItemAddFrame extends JFrame {
     public final JTextField costTxt;
     public final JComboBox<String> itemTypeSelection;
     public final JLabel chairsLabel;
-    public Furniture[] chairs;
+    public Furniture[] chairs = new Furniture[0];
     public final JList<Furniture> chairList;
     public final JScrollPane chairScroller;
     public final JLabel lengthLabel;
@@ -90,14 +94,7 @@ public class ItemAddFrame extends JFrame {
         itemPanel.add(widthLabel);
         itemPanel.add(widthTxt);
 
-        ArrayList<Furniture> furniture = FurnitureOrderingSystem.itemDB;
-        ArrayList<Chair> chairsList = new ArrayList<>();
-        for (Furniture f: furniture){
-            if (f instanceof Chair c)
-                chairsList.add(c);
-        }
-        chairs = chairsList.toArray(new Furniture[0]);
-
+        reload();
 
         chairList = new JList<>(chairs);
         chairList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -115,6 +112,20 @@ public class ItemAddFrame extends JFrame {
         backBtn = new JButton("Back");
         itemPanel.add(backBtn);
         backBtn.addMouseListener(new MouseHandler("Back"));
+    }
+
+    @Override
+    public void reload() {
+        List<Furniture> chairsList;
+        try {
+            chairsList = SQLConnection.instance.readItems("A.Type","chair");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+        chairs = chairsList.toArray(new Furniture[0]);
+        if (this.chairList!=null)
+            chairList.setListData(chairs);
     }
 
     private class MouseHandler implements MouseListener {
@@ -138,22 +149,19 @@ public class ItemAddFrame extends JFrame {
                 switch ((String) Objects.requireNonNull(itemTypeSelection.getSelectedItem())){
                     case "Bed" -> item = new Bed(mat,color,cost,length,width,height);
                     case "Chair" -> item = new Chair(mat,color,cost,length,width,height);
-                    case "Table" -> item = new DiningTable(mat,color,cost,length,width,height, (Chair[]) chairs);
+                    case "Table" -> {item = new DiningTable(mat,color,cost,length,width,height);
+                        ((DiningTable) item).listOfChairs.addAll(List.of((Chair[]) chairs));}
                     case "Sofa" -> item = new Sofa(mat,color,cost,length,width,height);
                     case "Cabinet" -> item = new StorageCabinet(mat,color,cost,length,width,height, drawers);
                     default -> item = null;
                 }
-                // TODO: Save Item to Database
-                FurnitureOrderingSystem.itemDB.add(item);
-
-                ArrayList<Furniture> furniture = FurnitureOrderingSystem.itemDB;
-                ArrayList<Chair> chairsList = new ArrayList<>();
-                for (Furniture f: furniture){
-                    if (f instanceof Chair c)
-                        chairsList.add(c);
-                }
-                chairs = chairsList.toArray(new Furniture[0]);
-                chairList.setListData(chairs);
+                if (item!=null)
+                    try {
+                        SQLConnection.instance.writeItem(item);
+                        reload();
+                    } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                    }
             }
         }
         @Override
