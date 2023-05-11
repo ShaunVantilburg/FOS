@@ -17,6 +17,19 @@ public abstract class Furniture {
         setColor(color);
         setCost(cost);
     }
+
+    public static Furniture getFurniture(String furnitureType, String materialType, String color, double cost, double l, double w, double h, int drawers){
+        Furniture item = null;
+        switch (furnitureType) {
+            case "bed"-> item = new Bed(materialType, color, cost, l, w, h);
+            case "chair"-> item = new Chair(materialType,color,cost,l,w,h);
+            case "dining table"-> item = new DiningTable(materialType,color,cost,l,w,h);
+            case "sofa"-> item = new Sofa(materialType,color,cost,l,w,h);
+            case "storage cabinet"-> item = new StorageCabinet(materialType,color,cost,l,w,h,drawers);
+        }
+
+        return item;
+    }
     
     //Member variables
     public Dimensions dimensions;
@@ -28,6 +41,18 @@ public abstract class Furniture {
     //Member methods
     public double getCost() {
         return this.cost;
+    }
+
+    public String getFurnitureType(){
+        return furnitureType;
+    }
+
+    public String getMaterialType(){
+        return materialType;
+    }
+
+    public String getColor(){
+        return color;
     }
     
     //Private initialization, safely usable in constructors

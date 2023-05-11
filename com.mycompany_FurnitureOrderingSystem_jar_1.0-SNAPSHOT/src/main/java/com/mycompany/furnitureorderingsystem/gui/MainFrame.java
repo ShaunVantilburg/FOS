@@ -1,5 +1,6 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
 import com.mycompany.furnitureorderingsystem.gui.CustomerAddFrame;
 import com.mycompany.furnitureorderingsystem.gui.GUIMain;
 
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JButton[] buttons = new JButton[7];
 
@@ -29,6 +30,11 @@ public class MainFrame extends JFrame {
         buttons[index] = new JButton(text);
         add(buttons[index]);
         buttons[index].addMouseListener(new MouseHandler(frame));
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     private record MouseHandler(JFrame frame) implements MouseListener {

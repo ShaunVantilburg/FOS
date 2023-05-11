@@ -1,15 +1,18 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.Customer;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CustomerSearchFrame extends JFrame {
+public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JLabel nameLabel;
     public final JTextField nameTxt;
@@ -18,7 +21,7 @@ public class CustomerSearchFrame extends JFrame {
     public final JButton backBtn;
     public final JFrame parent;
     public final JPanel panel;
-    public Customer[] found;
+    public Customer[] found = new Customer[0];
     public final JList<Customer> customerList;
 
     public CustomerSearchFrame(JFrame parent){
@@ -45,7 +48,7 @@ public class CustomerSearchFrame extends JFrame {
         panel.setLayout(new GridLayout(2,2));
         add(panel);
 
-        found = customers;
+        reload();
         customerList = new JList<>(found);
         customerList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         customerList.setLayoutOrientation(JList.VERTICAL);
@@ -56,15 +59,27 @@ public class CustomerSearchFrame extends JFrame {
 
 
     }
-    protected static Customer[] customers = {new Customer("Shaun"), new Customer("Josh"), new Customer("Mario")};
-    private Customer[] findCustomer(String search){
-        // TODO: get orders from database
-        ArrayList<Customer> found = new ArrayList<>();
-        for (Customer customer: customers){
-            if (customer.name.contains(search))
-                found.add(customer);
+    private void findCustomer(String search){
+        try {
+            var found = SQLConnection.instance.readCustomers(search).toArray(new Customer[0]);
+            if (this.customerList!=null)
+                customerList.setListData(found);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
         }
-        return found.toArray(new Customer[0]);
+    }
+
+    @Override
+    public void reload() {
+        try {
+            var found = SQLConnection.instance.readCustomers().toArray(new Customer[0]);
+            if (this.customerList!=null)
+                customerList.setListData(found);
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
     }
 
     private class MouseHandler implements MouseListener {
@@ -77,8 +92,7 @@ public class CustomerSearchFrame extends JFrame {
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-                found = findCustomer(nameTxt.getText());
-                customerList.setListData(found);
+                findCustomer(nameTxt.getText());
             }
         }
         @Override

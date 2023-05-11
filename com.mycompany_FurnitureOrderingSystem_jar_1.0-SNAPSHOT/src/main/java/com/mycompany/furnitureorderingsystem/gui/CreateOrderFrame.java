@@ -1,6 +1,8 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
 import com.mycompany.furnitureorderingsystem.*;
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+import com.mycompany.furnitureorderingsystem.database.SQLConnection;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -11,20 +13,23 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-public class CreateOrderFrame extends JFrame {
+public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JButton enterBtn;
     public final JButton backBtn;
     public final JFrame parent;
-    protected static Customer[] customers = {new Customer("Shaun"), new Customer("Josh"), new Customer("Mario")};
+    protected static Customer[] customers = {};
     protected Customer[] customerArray = customers;
     protected final JComboBox<Customer> customerCB;
-    public final Furniture[] items;
+    public Furniture[] items;
     public final JLabel dateLabel;
     public final JTextField dateTxt;
     public final JList<Furniture> itemList;
@@ -44,8 +49,6 @@ public class CreateOrderFrame extends JFrame {
 
         customerPanel.add(customerLbl);
 
-        // TODO: get orders from database
-
         customerCB = new JComboBox<>(customerArray);
 
         customerCB.setMaximumSize(customerCB.getPreferredSize());
@@ -54,20 +57,23 @@ public class CreateOrderFrame extends JFrame {
 
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1,2));
-        dateLabel = new JLabel("Enter Date: ");
+        dateLabel = new JLabel("Enter Date (MM/DD/YYYY): ");
         p.add(dateLabel);
         dateTxt = new JTextField();
         p.add(dateTxt);
         add(p);
 
-        JLabel itemLbl = new JLabel("Select an item");
+        JLabel itemLbl = new JLabel("Select items:");
         itemLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(itemLbl);
 
-        // TODO: get items from database
-
-        items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
+        try {
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
         itemList = new JList<>(items);
         itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         itemList.setLayoutOrientation(JList.VERTICAL);
@@ -89,6 +95,26 @@ public class CreateOrderFrame extends JFrame {
         add(btnPanel);
     }
 
+    @Override
+    public void reload() {
+        try {
+            customerArray = SQLConnection.instance.readCustomers().toArray(new Customer[0]);
+            if (customerCB!=null) {
+                customerCB.removeAllItems();
+                for (Customer c:customerArray) {
+                    customerCB.addItem(c);
+                }
+                customerCB.setMaximumSize(customerCB.getPreferredSize());
+            }
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+            if (itemList!=null)
+                itemList.setListData(items);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     private class MouseHandler implements MouseListener {
         private final String selector;
         MouseHandler(String selector){
@@ -99,7 +125,15 @@ public class CreateOrderFrame extends JFrame {
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-                // TODO: Save Order to Database
+                DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                try {
+                    Order order = new Order((Customer) customerCB.getSelectedItem(), format.parse(dateTxt.getText()), itemList.getSelectedValuesList());
+                    SQLConnection.instance.writeOrder(order);
+                    dateTxt.setText(""); itemList.setSelectedIndices(new int[0]);
+                } catch (ParseException | SQLException ex) {
+                    ex.printStackTrace();
+                    throw new RuntimeException(ex);
+                }
             }
         }
         @Override

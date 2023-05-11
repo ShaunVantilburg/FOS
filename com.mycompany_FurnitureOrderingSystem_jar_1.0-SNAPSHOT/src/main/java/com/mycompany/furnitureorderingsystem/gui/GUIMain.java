@@ -1,5 +1,7 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
+import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
+
 import javax.swing.*;
 
 public class GUIMain {
@@ -8,7 +10,7 @@ public class GUIMain {
     public static void open(){
         activeFrame = new MainFrame();
         activeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        activeFrame.setSize(400,300);
+        activeFrame.setSize(600,450);
         activeFrame.setVisible(true);
     }
 
@@ -21,5 +23,6 @@ public class GUIMain {
         activeFrame.setSize(size);
         activeFrame.setLocation(point);
         activeFrame.setVisible(true);
+        ((RefreshableDatabaseAccess) activeFrame).reload();
     }
 }

@@ -5,20 +5,17 @@ package com.mycompany.furnitureorderingsystem;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.util.Date;
+
 /**
- *
  * @author Shaun
  */
-public class Customer {
+public record Customer(int id, String name, Date dob, Address address) {
 
-    // For GUI testing
-    public final String name;
-    public Customer(String name){
-        this.name = name;
-    }
-    // For GUI testing
     @Override
     public String toString() {
-        return name;
+        return "Name: " + name +
+                " DOB: " + dob +
+                " Address: " + address;
     }
 }
