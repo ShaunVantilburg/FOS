@@ -18,6 +18,7 @@ public class FurnitureOrderingSystem {
         try {
             new SQLConnection("jdbc:mysql://localhost/fos_database", "CS3700", "CS3700");
         } catch (SQLException sqlException){
+            sqlException.printStackTrace();
             throw new RuntimeException("Connection failed: "+sqlException.getMessage());
         }
         GUIMain.open();

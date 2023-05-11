@@ -65,13 +65,15 @@ public class ItemSearchFrame extends JFrame implements RefreshableDatabaseAccess
         try {
             return SQLConnection.instance.readItems(search).toArray(new Furniture[0]);
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new RuntimeException(ex);
         }
     }
 
     @Override
     public void reload() {
-
+        found = findItem("");
+        itemList.setListData(found);
     }
 
     private class MouseHandler implements MouseListener {

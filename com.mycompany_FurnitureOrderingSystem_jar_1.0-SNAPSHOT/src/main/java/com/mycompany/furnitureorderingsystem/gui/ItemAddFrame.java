@@ -56,7 +56,7 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
         setLayout(new GridLayout(1,1));
 
         itemPanel = new JPanel();
-        itemPanel.setLayout(new GridLayout(7,2));
+        itemPanel.setLayout(new GridLayout(8,2));
 
         matLabel = new JLabel("Material Type: ");
         matTxt = new JTextField(10);
@@ -93,6 +93,8 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
         itemPanel.add(lengthTxt);
         itemPanel.add(widthLabel);
         itemPanel.add(widthTxt);
+        itemPanel.add(heightLabel);
+        itemPanel.add(heightTxt);
 
         reload();
 
@@ -144,7 +146,7 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                 double length = Double.parseDouble(lengthTxt.getText());
                 double width = Double.parseDouble(widthTxt.getText());
                 double height = Double.parseDouble(heightTxt.getText());
-                int drawers = Integer.parseInt(drawersTxt.getText());
+
                 Furniture item;
                 switch ((String) Objects.requireNonNull(itemTypeSelection.getSelectedItem())){
                     case "Bed" -> item = new Bed(mat,color,cost,length,width,height);
@@ -152,7 +154,8 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                     case "Table" -> {item = new DiningTable(mat,color,cost,length,width,height);
                         ((DiningTable) item).listOfChairs.addAll(List.of((Chair[]) chairs));}
                     case "Sofa" -> item = new Sofa(mat,color,cost,length,width,height);
-                    case "Cabinet" -> item = new StorageCabinet(mat,color,cost,length,width,height, drawers);
+                    case "Cabinet" -> {int drawers = Integer.parseInt(drawersTxt.getText());
+                        item = new StorageCabinet(mat,color,cost,length,width,height, drawers);}
                     default -> item = null;
                 }
                 if (item!=null)
@@ -160,8 +163,13 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                         SQLConnection.instance.writeItem(item);
                         reload();
                     } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                        ex.printStackTrace();
+                        throw new RuntimeException(ex);
                     }
+                itemTypeSelection.setSelectedItem("Bed"); matTxt.setText(""); colorTxt.setText(""); costTxt.setText("");
+                lengthTxt.setText(""); widthTxt.setText(""); heightTxt.setText("");
+                drawersTxt.setText(""); chairList.setSelectedIndices(new int[0]);
+                reload();
             }
         }
         @Override
@@ -184,11 +192,11 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
             if (!Objects.equals(type, previousType)) {
                 if (Objects.equals(previousType, "Table")) {
                     setLayout(new GridLayout(1,1));
-                    itemPanel.setLayout(new GridLayout(7,2));
+                    itemPanel.setLayout(new GridLayout(8,2));
                     remove(chairScroller);
                     itemPanel.remove(chairsLabel);
                 } else if (Objects.equals(previousType, "Cabinet")){
-                    itemPanel.setLayout(new GridLayout(7,1));
+                    itemPanel.setLayout(new GridLayout(8,1));
                     itemPanel.remove(drawersLabel);
                     itemPanel.remove(drawersTxt);
                 }
@@ -196,12 +204,16 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                 if (Objects.equals(type, "Table")) {
                     setLayout(new GridLayout(2,1));
                     add(chairScroller);
-                    itemPanel.setLayout(new GridLayout(8,2));
+                    itemPanel.setLayout(new GridLayout(9,2));
                     itemPanel.add(chairsLabel);
                 } else if (Objects.equals(type, "Cabinet")) {
-                    itemPanel.setLayout(new GridLayout(2,1));
+                    itemPanel.setLayout(new GridLayout(9,1));
+                    itemPanel.remove(enterBtn);
+                    itemPanel.remove(backBtn);
                     itemPanel.add(drawersLabel);
                     itemPanel.add(drawersTxt);
+                    itemPanel.add(enterBtn);
+                    itemPanel.add(backBtn);
                 }
             }
         }

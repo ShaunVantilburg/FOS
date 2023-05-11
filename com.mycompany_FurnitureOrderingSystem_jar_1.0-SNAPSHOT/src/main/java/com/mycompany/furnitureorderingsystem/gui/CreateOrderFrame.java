@@ -14,7 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
@@ -27,7 +29,7 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
     protected static Customer[] customers = {};
     protected Customer[] customerArray = customers;
     protected final JComboBox<Customer> customerCB;
-    public final Furniture[] items;
+    public Furniture[] items;
     public final JLabel dateLabel;
     public final JTextField dateTxt;
     public final JList<Furniture> itemList;
@@ -47,8 +49,6 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
         customerPanel.add(customerLbl);
 
-        // TODO: get orders from database
-
         customerCB = new JComboBox<>(customerArray);
 
         customerCB.setMaximumSize(customerCB.getPreferredSize());
@@ -57,7 +57,7 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1,2));
-        dateLabel = new JLabel("Enter Date: ");
+        dateLabel = new JLabel("Enter Date (MM/DD/YYYY): ");
         p.add(dateLabel);
         dateTxt = new JTextField();
         p.add(dateTxt);
@@ -97,7 +97,22 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
     @Override
     public void reload() {
-
+        try {
+            customerArray = SQLConnection.instance.readCustomers().toArray(new Customer[0]);
+            if (customerCB!=null) {
+                customerCB.removeAllItems();
+                for (Customer c:customerArray) {
+                    customerCB.addItem(c);
+                }
+                customerCB.setMaximumSize(customerCB.getPreferredSize());
+            }
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+            if (itemList!=null)
+                itemList.setListData(items);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private class MouseHandler implements MouseListener {
@@ -110,7 +125,15 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-                // TODO: Save Order to Database
+                DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                try {
+                    Order order = new Order((Customer) customerCB.getSelectedItem(), format.parse(dateTxt.getText()), itemList.getSelectedValuesList());
+                    SQLConnection.instance.writeOrder(order);
+                    dateTxt.setText(""); itemList.setSelectedIndices(new int[0]);
+                } catch (ParseException | SQLException ex) {
+                    ex.printStackTrace();
+                    throw new RuntimeException(ex);
+                }
             }
         }
         @Override

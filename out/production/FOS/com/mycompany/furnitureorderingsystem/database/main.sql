@@ -1,4 +1,4 @@
-CREATE TABLE address (
+CREATE TABLE IF NOT EXISTS address (
 	addressID INT NOT NULL AUTO_INCREMENT,
     street VARCHAR(127),
     city VARCHAR(63),
@@ -6,7 +6,7 @@ CREATE TABLE address (
     zip VARCHAR(16),
     primary key (addressID)
 );
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS customers (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   dob DATE,
@@ -14,14 +14,15 @@ CREATE TABLE customers (
   PRIMARY KEY (id),
   foreign key (addressID) references address (addressID)
 );
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
   OrderID INT NOT NULL AUTO_INCREMENT,
   DateOfOrder DATE NOT NULL,
   CustomerID INT NOT NULL,
+  TotalCost DECIMAL(10,2),
   PRIMARY KEY (OrderID),
   foreign key (CustomerID) references customers (id)
 );
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
 	ItemID INT NOT NULL AUTO_INCREMENT,
     Type VARCHAR(255) NOT NULL,
     Length DECIMAL(10,2),
@@ -35,7 +36,7 @@ CREATE TABLE items (
     PRIMARY KEY (ItemID),
     foreign key (TableOfChair) references items (ItemID)
 );
-create table orderItem(
+create table IF NOT EXISTS orderItem(
 	OrderID INT NOT NULL,
     ItemID INT NOT NULL,
 	foreign key (OrderID) references orders (OrderID),
