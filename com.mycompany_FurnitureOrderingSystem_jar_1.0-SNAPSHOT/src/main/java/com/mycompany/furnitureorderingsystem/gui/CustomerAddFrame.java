@@ -1,5 +1,6 @@
 package com.mycompany.furnitureorderingsystem.gui;
 
+import com.mycompany.furnitureorderingsystem.Address;
 import com.mycompany.furnitureorderingsystem.Customer;
 import com.mycompany.furnitureorderingsystem.FurnitureOrderingSystem;
 import com.mycompany.furnitureorderingsystem.database.RefreshableDatabaseAccess;
@@ -13,7 +14,9 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class CustomerAddFrame extends JFrame implements RefreshableDatabaseAccess {
@@ -43,7 +46,7 @@ public class CustomerAddFrame extends JFrame implements RefreshableDatabaseAcces
         nameTxt.setFont(font);
         add(nameTxt);
 
-        dobLabel = new JLabel("Date of Birth: ");
+        dobLabel = new JLabel("Date of Birth (MM/DD/YYYY): ");
         dobLabel.setFont(font);
         add(dobLabel);
 
@@ -51,7 +54,7 @@ public class CustomerAddFrame extends JFrame implements RefreshableDatabaseAcces
         dobTxt.setFont(font);
         add(dobTxt);
 
-        addressLabel = new JLabel("Address: ");
+        addressLabel = new JLabel("Address (Street, City, State, Zipcode): ");
         addressLabel.setFont(font);
         add(addressLabel);
 
@@ -86,7 +89,15 @@ public class CustomerAddFrame extends JFrame implements RefreshableDatabaseAcces
                 DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                 Customer customer;
                 try {
-                    customer = new Customer(1,nameTxt.getText(), format.parse(dobTxt.getText()),addressTxt.getText());
+                    String[] addressArr = addressTxt.getText().replace(","," ").split("\\s+");
+                    if (addressArr.length<4){
+                        ArrayList<String> addressList = new ArrayList<>(List.of(addressArr));
+                        while (addressList.size()<4)
+                            addressList.add("");
+                        addressArr = addressList.toArray(new String[0]);
+                    }
+                    Address address = new Address(addressArr[0],addressArr[1],addressArr[2],addressArr[3]);
+                    customer = new Customer(-1,nameTxt.getText(), format.parse(dobTxt.getText()),address);
                     SQLConnection.instance.writeCustomer(customer);
                 } catch (ParseException | SQLException ex) {
                     ex.printStackTrace();

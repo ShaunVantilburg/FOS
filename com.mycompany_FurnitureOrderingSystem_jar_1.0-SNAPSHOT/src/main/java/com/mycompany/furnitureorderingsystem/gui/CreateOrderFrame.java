@@ -16,19 +16,20 @@ import java.awt.event.*;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+import java.util.Date;
 
 public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAccess {
 
     public final JButton enterBtn;
     public final JButton backBtn;
     public final JFrame parent;
-    protected static String[] customers = SQLConnection.customers();
-    protected String[] customerArray = customers;
-    protected final JComboBox<String> customerCB;
-    public final Furniture[] items;
+    protected static Customer[] customers = {};
+    protected Customer[] customerArray = customers;
+    protected final JComboBox<Customer> customerCB;
+    public Furniture[] items;
     public final JLabel dateLabel;
     public final JTextField dateTxt;
     public final JList<Furniture> itemList;
@@ -48,8 +49,6 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
         customerPanel.add(customerLbl);
 
-
-
         customerCB = new JComboBox<>(customerArray);
 
         customerCB.setMaximumSize(customerCB.getPreferredSize());
@@ -58,7 +57,7 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1,2));
-        dateLabel = new JLabel("Enter Date: ");
+        dateLabel = new JLabel("Enter Date (MM/DD/YYYY): ");
         p.add(dateLabel);
         dateTxt = new JTextField();
         p.add(dateTxt);
@@ -69,7 +68,12 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
         add(itemLbl);
 
-        items = SQLConnection.findItems();
+        try {
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
         itemList = new JList<>(items);
         itemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         itemList.setLayoutOrientation(JList.VERTICAL);
@@ -93,7 +97,22 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
 
     @Override
     public void reload() {
-
+        try {
+            customerArray = SQLConnection.instance.readCustomers().toArray(new Customer[0]);
+            if (customerCB!=null) {
+                customerCB.removeAllItems();
+                for (Customer c:customerArray) {
+                    customerCB.addItem(c);
+                }
+                customerCB.setMaximumSize(customerCB.getPreferredSize());
+            }
+            items = SQLConnection.instance.readItems().toArray(new Furniture[0]);
+            if (itemList!=null)
+                itemList.setListData(items);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private class MouseHandler implements MouseListener {
@@ -106,20 +125,15 @@ public class CreateOrderFrame extends JFrame implements RefreshableDatabaseAcces
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-
-                Furniture[] furnitureList = new Furniture[itemList.getSelectedValuesList().size()];
-                furnitureList = itemList.getSelectedValuesList().toArray(furnitureList);
-                int[] furnitureIndices = itemList.getSelectedIndices();
-                int customerIndex = customerCB.getSelectedIndex();
-
+                DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                 try {
-                    DateFormat format = new SimpleDateFormat("MM/DD/YYYY");
-                    Date orderDate = format.parse(dateTxt.getText());
-                    java.sql.Date sqlDate = new java.sql.Date(orderDate.getTime());
-                    Order new_order = new Order(SQLConnection.customerAt(customerIndex),sqlDate,furnitureList);
-                    SQLConnection.addOrder(sqlDate, furnitureIndices, customerIndex);
-                    } catch(Exception ex) {System.out.println(ex);}
-                
+                    Order order = new Order((Customer) customerCB.getSelectedItem(), format.parse(dateTxt.getText()), itemList.getSelectedValuesList());
+                    SQLConnection.instance.writeOrder(order);
+                    dateTxt.setText(""); itemList.setSelectedIndices(new int[0]);
+                } catch (ParseException | SQLException ex) {
+                    ex.printStackTrace();
+                    throw new RuntimeException(ex);
+                }
             }
         }
         @Override

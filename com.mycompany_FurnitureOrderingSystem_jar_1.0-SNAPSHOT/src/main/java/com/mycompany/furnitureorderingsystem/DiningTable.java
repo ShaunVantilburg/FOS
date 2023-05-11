@@ -22,10 +22,6 @@ public class DiningTable extends Furniture {
     
     @Override
     public String toString() {
-        String chairs = "";
-        for (var x : listOfChairs) {
-            chairs += "    " + x.toString();
-        }
-        return super.toString() + "    Chairs: " + chairs;
+        return super.toString();
     }
 }

@@ -10,7 +10,7 @@ public class GUIMain {
     public static void open(){
         activeFrame = new MainFrame();
         activeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        activeFrame.setSize(400,300);
+        activeFrame.setSize(600,450);
         activeFrame.setVisible(true);
     }
 

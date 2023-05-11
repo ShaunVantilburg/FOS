@@ -60,19 +60,20 @@ public class ItemSearchFrame extends JFrame implements RefreshableDatabaseAccess
         JScrollPane listScroller = new JScrollPane(itemList);
         add(listScroller);
     }
-    protected static Furniture[] items = SQLConnection.findItems();
-    
-        private Furniture[] findItem(String search){
+    protected static Furniture[] items = new Furniture[]{new Bed("wood","red",5,3,4,8),new Chair("wood","red",5,3,4,8),new Sofa("wood","red",5,3,4,8)};
+    private Furniture[] findItem(String search){
         try {
             return SQLConnection.instance.readItems(search).toArray(new Furniture[0]);
         } catch (SQLException ex) {
+            ex.printStackTrace();
             throw new RuntimeException(ex);
         }
     }
 
     @Override
     public void reload() {
-
+        found = findItem("");
+        itemList.setListData(found);
     }
 
     private class MouseHandler implements MouseListener {
