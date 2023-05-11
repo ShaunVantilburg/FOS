@@ -10,7 +10,6 @@ Shaun Van Tilburg
 Josh Carter
 Mauricio Salvador Espinosa Torres
 Leila Garcia Amaral Certo
-Jordan Alvin Highsmith
 
 Instructions:
 You will work in a team of 5 together to design a Furniture Ordering System (FOS) that store,
