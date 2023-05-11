@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @author Shaun
  */
-public record Customer(int id, String name, Date dob, Address address) {
+public record Customer(int id, String name, Date dob, String address) {
 
     @Override
     public String toString() {

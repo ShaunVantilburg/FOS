@@ -16,11 +16,11 @@ import java.sql.SQLException;
 public class FurnitureOrderingSystem {
     public static void main(String[] args) {
         try {
-            new SQLConnection("jdbc:mysql://localhost/fos_database", "CS3700", "CS3700");
+            new SQLConnection("jdbc:mysql://localhost:3306/fos", "CS3700", "CS3700");
         } catch (SQLException sqlException){
-            sqlException.printStackTrace();
             throw new RuntimeException("Connection failed: "+sqlException.getMessage());
         }
+
         GUIMain.open();
     }
 }

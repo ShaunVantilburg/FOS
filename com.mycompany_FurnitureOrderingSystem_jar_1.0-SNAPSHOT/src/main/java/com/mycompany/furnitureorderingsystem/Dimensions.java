@@ -41,7 +41,7 @@ public class Dimensions {
         if (h > 0) height = h;
         else System.out.println("Invalid height. Failed to change.");
     }
-
+    @Override
     public String toString(){
         return length + "," +
                 height + "," +

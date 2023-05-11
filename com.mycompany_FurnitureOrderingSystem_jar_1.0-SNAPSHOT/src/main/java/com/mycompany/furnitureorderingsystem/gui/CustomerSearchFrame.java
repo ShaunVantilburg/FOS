@@ -21,7 +21,7 @@ public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAc
     public final JButton backBtn;
     public final JFrame parent;
     public final JPanel panel;
-    public Customer[] found = new Customer[0];
+    public Customer[] found;
     public final JList<Customer> customerList;
 
     public CustomerSearchFrame(JFrame parent){
@@ -59,11 +59,10 @@ public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAc
 
 
     }
-    private void findCustomer(String search){
+    private Customer[] findCustomer(String search){
         try {
-            var found = SQLConnection.instance.readCustomers(search).toArray(new Customer[0]);
-            if (this.customerList!=null)
-                customerList.setListData(found);
+            var f = SQLConnection.instance.readCustomers(search);
+            return f.toArray(new Customer[0]);
         } catch (SQLException ex){
             ex.printStackTrace();
             throw new RuntimeException(ex);
@@ -72,14 +71,9 @@ public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAc
 
     @Override
     public void reload() {
-        try {
-            var found = SQLConnection.instance.readCustomers().toArray(new Customer[0]);
-            if (this.customerList!=null)
-                customerList.setListData(found);
-        } catch (SQLException ex){
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
+        found = findCustomer("");
+        if (this.customerList!=null)
+            customerList.setListData(found);
     }
 
     private class MouseHandler implements MouseListener {
@@ -92,7 +86,8 @@ public class CustomerSearchFrame extends JFrame implements RefreshableDatabaseAc
             if (Objects.equals(this.selector, "Back")){
                 GUIMain.setActiveFrame(parent);
             } else {
-                findCustomer(nameTxt.getText());
+                found = findCustomer(nameTxt.getText());
+                customerList.setListData(found);
             }
         }
         @Override

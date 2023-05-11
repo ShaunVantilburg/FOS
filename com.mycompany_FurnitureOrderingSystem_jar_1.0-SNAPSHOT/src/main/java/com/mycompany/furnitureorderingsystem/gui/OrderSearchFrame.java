@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -57,26 +56,19 @@ public class OrderSearchFrame extends JFrame implements RefreshableDatabaseAcces
         JScrollPane listScroller = new JScrollPane(orderList);
         add(listScroller);
     }
-    protected static Order[] orders = new Order[0];
+    protected static Order[] orders = SQLConnection.findOrders();
     private Order[] findItem(String search){
-        try {
-            return SQLConnection.instance.readOrders(search).toArray(new Order[0]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        ArrayList<Order> found = new ArrayList<>();
+        for (Order order: orders){
+            if (order.toString().contains(search))
+                found.add(order);
         }
+        return found.toArray(new Order[0]);
     }
 
     @Override
     public void reload() {
-        try {
-            orders = SQLConnection.instance.readOrders("").toArray(new Order[0]);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        if (orderList!=null)
-            orderList.setListData(orders);
+            
     }
 
     private class MouseHandler implements MouseListener {

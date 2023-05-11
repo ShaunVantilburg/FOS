@@ -28,8 +28,8 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
     public final JTextField costTxt;
     public final JComboBox<String> itemTypeSelection;
     public final JLabel chairsLabel;
-    public Furniture[] chairs = new Furniture[0];
-    public final JList<Furniture> chairList;
+    public Chair[] chairs = SQLConnection.findChairs();
+    public final JList<Chair> chairList;
     public final JScrollPane chairScroller;
     public final JLabel lengthLabel;
     public final JTextField lengthTxt;
@@ -42,6 +42,7 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
     public final JButton enterBtn;
     public final JButton backBtn;
     public final JFrame parent;
+
     public ItemAddFrame(JFrame parent){
         super("Item Adder System");
         this.parent = parent;
@@ -96,7 +97,6 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
         itemPanel.add(heightLabel);
         itemPanel.add(heightTxt);
 
-        reload();
 
         chairList = new JList<>(chairs);
         chairList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -118,16 +118,8 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
 
     @Override
     public void reload() {
-        List<Furniture> chairsList;
-        try {
-            chairsList = SQLConnection.instance.readItems("A.Type","chair");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
-        chairs = chairsList.toArray(new Furniture[0]);
-        if (this.chairList!=null)
-            chairList.setListData(chairs);
+        chairs = SQLConnection.findChairs();
+        chairList.setListData(chairs);
     }
 
     private class MouseHandler implements MouseListener {
@@ -146,16 +138,23 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                 double length = Double.parseDouble(lengthTxt.getText());
                 double width = Double.parseDouble(widthTxt.getText());
                 double height = Double.parseDouble(heightTxt.getText());
-
                 Furniture item;
                 switch ((String) Objects.requireNonNull(itemTypeSelection.getSelectedItem())){
-                    case "Bed" -> item = new Bed(mat,color,cost,length,width,height);
+                    case "Bed" -> {
+                        System.out.println(mat + color + cost + length + width + height);
+                        item = new Bed(mat,color,cost,length,width,height);
+                    }
                     case "Chair" -> item = new Chair(mat,color,cost,length,width,height);
-                    case "Table" -> {item = new DiningTable(mat,color,cost,length,width,height);
-                        ((DiningTable) item).listOfChairs.addAll(List.of((Chair[]) chairs));}
+                    case "Table" -> {
+                        item = new DiningTable(mat,color,cost,length,width,height);
+                        
+                        ((DiningTable) item).listOfChairs.addAll(chairList.getSelectedValuesList());
+                    }
                     case "Sofa" -> item = new Sofa(mat,color,cost,length,width,height);
-                    case "Cabinet" -> {int drawers = Integer.parseInt(drawersTxt.getText());
-                        item = new StorageCabinet(mat,color,cost,length,width,height, drawers);}
+                    case "Cabinet" -> {
+                        int drawers = Integer.parseInt(drawersTxt.getText());
+                        item = new StorageCabinet(mat,color,cost,length,width,height, drawers);
+                    }
                     default -> item = null;
                 }
                 if (item!=null)
@@ -163,13 +162,8 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
                         SQLConnection.instance.writeItem(item);
                         reload();
                     } catch (SQLException ex) {
-                        ex.printStackTrace();
-                        throw new RuntimeException(ex);
+                    throw new RuntimeException(ex);
                     }
-                itemTypeSelection.setSelectedItem("Bed"); matTxt.setText(""); colorTxt.setText(""); costTxt.setText("");
-                lengthTxt.setText(""); widthTxt.setText(""); heightTxt.setText("");
-                drawersTxt.setText(""); chairList.setSelectedIndices(new int[0]);
-                reload();
             }
         }
         @Override
@@ -223,7 +217,6 @@ public class ItemAddFrame extends JFrame implements RefreshableDatabaseAccess {
     private boolean adjusting = false;
 
     private class ItemSelectionListener implements ListSelectionListener {
-
         @Override
         public void valueChanged(ListSelectionEvent e) {
             if (adjusting)

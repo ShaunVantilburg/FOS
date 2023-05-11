@@ -16,4 +16,9 @@ public class StorageCabinet extends Furniture {
         super(FURNITURE, materialType, color, cost, l, w, h);
         this.drawers = drawers;
     }
+    
+    @Override
+    public String toString() {
+        return super.toString() + "Number of drawers: " + drawers;
+    }
 }
