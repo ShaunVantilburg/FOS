@@ -5,16 +5,17 @@ package com.mycompany.furnitureorderingsystem;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.util.Date;
+
 /**
- *
  * @author Shaun
  */
-public class Chair extends Furniture {
-    private static final String FURNITURE = "chair";
-    public Chair(String materialType, String color, double cost, double l, double w, double h) { super(FURNITURE, materialType, color, cost, l, w, h); }
+public record Customer(int id, String name, Date dob, String address) {
 
     @Override
     public String toString() {
-    return super.toString();
+        return "Name: " + name +
+                " DOB: " + dob +
+                " Address: " + address;
     }
 }
